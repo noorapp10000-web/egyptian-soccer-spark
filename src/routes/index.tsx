@@ -585,13 +585,13 @@ function NewsSection() {
               <p className="text-sm font-bold leading-snug group-hover:text-primary line-clamp-2">
                 {item.title}
               </p>
-              <p className="mt-1.5 flex items-center gap-2 text-[11px] text-muted-foreground">
+              <div className="mt-1.5 flex items-center gap-2 text-[11px] text-muted-foreground">
                 <Badge variant="secondary" className="text-[10px]">
                   {item.sourceName}
                 </Badge>
                 {item.publishedText}
                 <ExternalLink className="size-3" />
-              </p>
+              </div>
             </div>
           </a>
         ))}
