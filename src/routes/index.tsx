@@ -14,7 +14,7 @@ import {
   Shirt,
   Goal,
   Star,
-  Whistle,
+  Flag,
 } from "lucide-react";
 
 import {
@@ -269,7 +269,7 @@ function MatchDetailDialog({
               )}
               {detail.referee && (
                 <span className="flex items-center gap-1">
-                  <Whistle className="size-3.5" /> الحكم: {detail.referee}
+                  <Flag className="size-3.5" /> الحكم: {detail.referee}
                 </span>
               )}
               {detail.homeCoach && <span>مدرب {detail.homeTeam.name}: {detail.homeCoach}</span>}
