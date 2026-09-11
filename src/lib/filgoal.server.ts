@@ -207,7 +207,7 @@ const statusFromText = (text: string): Match["status"] => {
 const kickoffIso = (text: string) => {
   const m = text.match(/(\d{2})-(\d{2})-(\d{4})\s*-\s*(\d{1,2}):(\d{2})/);
   if (!m) return null;
-  const [, d, mo, y, h, mi] = m;
+  const [, d, mo, y, h = "", mi = ""] = m;
   return `${y}-${mo}-${d}T${h.padStart(2, "0")}:${mi}:00+03:00`;
 };
 
@@ -221,7 +221,7 @@ const teamFromBlock = (block: string): Team => {
 export function parseTeamMatches(html: string): Match[] {
   const blocks = html.split('<div class="cin_cntnr">').slice(1);
   return blocks
-    .map((raw) => {
+    .map((raw): Match | null => {
       const block = raw.split('<div class="cin_cntnr">')[0]!;
       const matchLink = block.match(/href="(\/matches\/(\d+)\/[^"]*)"/i);
       if (!matchLink) return null;
@@ -493,7 +493,7 @@ export function parseMatchDetail(html: string): MatchDetail | null {
 export function parseFilGoalNews(html: string): NewsItem[] {
   const items = [...html.matchAll(/<div class="news-block[^"]*">([\s\S]*?)<\/header>/gi)]
     .map((m) => m[1]!)
-    .map((block) => {
+    .map((block): NewsItem | null => {
       const link = block.match(/href="(\/articles\/(\d+)\/[^"]*)"/i);
       if (!link) return null;
       const title = decode(
