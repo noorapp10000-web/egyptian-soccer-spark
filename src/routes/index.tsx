@@ -79,7 +79,7 @@ export const Route = createFileRoute("/")({
 
 /* ------------------------------- عناصر مشتركة ------------------------------ */
 
-function SourceNote({ source }: { source?: Source }) {
+function SourceNote({ source }: { source?: Source | undefined }) {
   if (!source) return null;
   return (
     <p className="flex items-center gap-1.5 text-xs text-muted-foreground">

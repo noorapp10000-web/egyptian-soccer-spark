@@ -268,7 +268,7 @@ export function parseSquad(html: string): SquadPlayer[] {
   const body = html.match(/قائمة اللاعبين[\s\S]*?<tbody[^>]*>([\s\S]*?)<\/tbody>/i)?.[1] ?? "";
   const rows = [...body.matchAll(/<tr>([\s\S]*?)<\/tr>/gi)].map((m) => m[1]!);
   const players = rows
-    .map((row) => {
+    .map((row): SquadPlayer | null => {
       const cells = [...row.matchAll(/<td>([\s\S]*?)<\/td>/gi)].map((m) => m[1]!);
       if (cells.length < 4) return null;
       const link = cells[1]!.match(/href="(\/players\/(\d+)\/[^"]*)"/i);
